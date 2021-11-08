@@ -9,11 +9,19 @@ document.addEventListener("keydown", function (e) {
   // setTimeout(function(){notes.classList.remove("note-animation")},700);
 });
 
-keys.forEach((key) =>
+
+
+keys.forEach((key,index) =>
   key.addEventListener("click", (e) => {
     key.classList.add("pushing-button");
+    notes[index].classList.add("note-animation")
   })
 );
+// notes.forEach((note) =>
+//   note.addEventListener("click", (e) => {
+//    note.classList.add("pushing-button");
+//   })
+// );
 
 function removeTransitionBtn(e) {
   if (e.propertyName !== "transform") return;
