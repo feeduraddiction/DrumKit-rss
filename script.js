@@ -1,25 +1,33 @@
+const keys = document.querySelectorAll(".button");
+const notes = document.querySelectorAll(".note");
 
-const keys = document.querySelectorAll('.button');
+document.addEventListener("keydown", function (e) {
+  const key = document.querySelector(`.button[data-key="${e.keyCode}"]`);
+  const notes = document.querySelector(`.note[data-key="${e.keyCode}"]`);
+  key.classList.add("pushing-button");
+  notes.classList.add("note-animation");
+  // setTimeout(function(){notes.classList.remove("note-animation")},700);
+});
 
-document.addEventListener("keydown", function(e){
- const key = document.querySelector(`.button[data-key="${e.keyCode}"]`);
-key.classList.add("pushing-button");
-// setTimeout(function(){key.classList.remove("pushing-button")},100);
-})
-
-keys.forEach(key =>key.addEventListener("click", (e) => {
-  key.classList.add('pushing-button')
-})
-)
-
-function removeTransition(e){
-    if(e.propertyName !== 'transform') return;
-    this.classList.remove('pushing-button');
-
-}
-
-
-
-keys.forEach(key => key.addEventListener('transitionend', removeTransition)
+keys.forEach((key) =>
+  key.addEventListener("click", (e) => {
+    key.classList.add("pushing-button");
+  })
 );
 
+function removeTransitionBtn(e) {
+  if (e.propertyName !== "transform") return;
+  this.classList.remove("pushing-button");
+}
+
+function removeTransitionNote(e) {
+  if (e.propertyName !== "transform") return;
+  this.classList.remove("note-animation");
+  console.log(e)
+}
+
+keys.forEach((key) =>
+  key.addEventListener("transitionend", removeTransitionBtn));
+
+notes.forEach((note) =>
+  note.addEventListener("transitionend", removeTransitionNote));
